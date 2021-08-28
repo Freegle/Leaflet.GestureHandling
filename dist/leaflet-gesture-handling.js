@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = global || self, factory(global['leaflet-gesture-handling'] = {}));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['leaflet-gesture-handling'] = {}));
 }(this, (function (exports) { 'use strict';
 
     var LanguageContent = {
@@ -683,18 +683,20 @@
 
                 clearTimeout(this._isScrolling);
 
-                // Set a timeout to run after scrolling ends
-                this._isScrolling = setTimeout(function() {
-                    // Run the callback
-                    var warnings = document.getElementsByClassName(
-                        "leaflet-gesture-handling-scroll-warning"
-                    );
-                    for (var i = 0; i < warnings.length; i++) {
-                        L.DomUtil.removeClass(warnings[i],
+                if (this._map.options.gestureHandlingOptions) {
+                    // Set a timeout to run after scrolling ends
+                    this._isScrolling = setTimeout(function() {
+                        // Run the callback
+                        var warnings = document.getElementsByClassName(
                             "leaflet-gesture-handling-scroll-warning"
                         );
-                    }
-                }, this._map.options.gestureHandlingOptions.duration);
+                        for (var i = 0; i < warnings.length; i++) {
+                            L.DomUtil.removeClass(warnings[i],
+                                "leaflet-gesture-handling-scroll-warning"
+                            );
+                        }
+                    }, this._map.options.gestureHandlingOptions.duration);
+                }
             }
         },
 
