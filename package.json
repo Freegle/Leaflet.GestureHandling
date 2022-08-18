@@ -5,7 +5,8 @@
   "main": "./dist/leaflet-gesture-handling.min.js",
   "module": "./src/leaflet-gesture-handling.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "types": "./dist/leaflet-gesture-handling.d.ts",
   "scripts": {
