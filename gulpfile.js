@@ -7,7 +7,7 @@ var gulp = require("gulp"),
     sourcemaps = require("gulp-sourcemaps"),
     rename = require("gulp-rename"),
     rollup = require("gulp-better-rollup"),
-    babel = require("rollup-plugin-babel");
+    babel = require("@rollup/plugin-babel");
 
 gulp.task("js", function() {
     return gulp
@@ -15,7 +15,7 @@ gulp.task("js", function() {
         .pipe(sourcemaps.init())
         .pipe(
             rollup(
-                { plugins: [babel()] },
+                { plugins: [babel] },
                 {
                     file: "dist/leaflet-gesture-handling.js",
                     format: "umd"
@@ -42,13 +42,9 @@ gulp.task("styles", function() {
 });
 
 gulp.task("dev", function() {
-    gulp.run("styles");
-    gulp.run("js");
+    gulp.series("styles", 'js');
     gulp.watch("src/scss/*.scss", ["styles"]);
     gulp.watch("src/js/*.js", ["js"]);
 });
 
-gulp.task("build", function() {
-    gulp.run("styles");
-    gulp.run("js");
-});
+gulp.task("build", gulp.series("styles", "js"));

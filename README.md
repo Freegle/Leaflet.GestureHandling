@@ -1,3 +1,7 @@
+# Why does this fork exist?
+
+The original repo is badly maintained and had one crucial bug that I wanted to get rid of
+
 # Leaflet.GestureHandling
 
 Version 1.2.2
