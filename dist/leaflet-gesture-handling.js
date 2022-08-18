@@ -1,8 +1,8 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['leaflet-gesture-handling'] = {}));
-}(this, (function (exports) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["leaflet-gesture-handling"] = {}));
+})(this, (function (exports) { 'use strict';
 
     var LanguageContent = {
         //Arabic
@@ -659,6 +659,7 @@
                 );
                 this._disableInteractions();
             } else {
+                e.preventDefault();
                 this._enableInteractions();
                 L.DomUtil.removeClass(this._map._container, 
                     "leaflet-gesture-handling-touch-warning"
@@ -718,5 +719,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=leaflet-gesture-handling.js.map
